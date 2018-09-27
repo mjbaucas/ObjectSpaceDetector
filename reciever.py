@@ -9,9 +9,9 @@ insocket.bind(('127.0.0.1', 9000))
 insocket.listen(10)
 
 connection, address = insocket.accept()
-while True:
+while True:   
     try:
-        data, server = connection.recvfrom(77500)
+        data, server = connection.recvfrom(120000)
 
         array = numpy.frombuffer(data, dtype=numpy.dtype('uint8'))
         frame = cv2.imdecode(array, 1)
@@ -20,7 +20,8 @@ while True:
             continue
         else:
             cv2.imshow('name',frame)
-            
+            threshold = len(array)
+        
             if cv2.waitKey(1) == ord('q'):
                 break
 
